@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from tkinter import *
 
 #Inicio do projeto Extensionista de reconhecimento facial 14/3/2024
 
@@ -13,6 +14,17 @@ input_login = ctk.CTkEntry(master=root,placeholder_text="Digite seu usuário", w
 input_password = ctk.CTkEntry(master=root, placeholder_text="Digite sua senha", width=200)
 #----------------------------------------------------------------------------------------------------------------
 
+#LOGIN IMAGE (recursos do TkInter)
+
+image_login = PhotoImage(file='./img/pngtree-icon-set-for-secure-authentication-password-login-pincode-and-security-vector-png-image_12663652.png')
+image_label = Label(root, image=image_login, width=500, height=200)
+image_label.place(x=0, y=0)
+root.image_login = image_login
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------
 #BOTÕES
 
 login_button = ctk.CTkButton(master=root, text="Acessar", width=200)
