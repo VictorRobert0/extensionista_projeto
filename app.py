@@ -6,6 +6,8 @@ from tkinter import *
 root = ctk.CTk()
 root.title('Action Prol - System')
 root.geometry('700x500')
+root.resizable(False,False)
+root.config(bg='#DCDCDC')
 
 #----------------------------------------------------------------------------------------------------------------
 #INPUTS LOGIN
@@ -16,10 +18,14 @@ input_password = ctk.CTkEntry(master=root, placeholder_text="Digite sua senha", 
 
 #LOGIN IMAGE (recursos do TkInter)
 
-image_login = PhotoImage(file='./img/pngtree-icon-set-for-secure-authentication-password-login-pincode-and-security-vector-png-image_12663652.png')
-image_label = Label(root, image=image_login, width=500, height=200)
-image_label.place(x=0, y=0)
+canvas = Canvas(root,  bd=0, highlightthickness=0)
+canvas.pack()
+image_login = PhotoImage(file='./img/user-login-icon-29.png')
+image_label = Label(root, image=image_login, width=377, height=270,bg="#DCDCDC")
+image_label.place(relx=0.23, rely=0.0)
 root.image_login = image_login
+
+
 
 
 
@@ -29,20 +35,20 @@ root.image_login = image_login
 
 login_button = ctk.CTkButton(master=root, text="Acessar", width=200)
 
-to_register = ctk.CTkButton(master=root, text="REGISTRAR-SE", width=210)
+to_register = ctk.CTkButton(master=root, text="REGISTRAR-SE", width=200)
 
 #----------------------------------------------------------------------------------------------------------------
 
 #Button position
-to_register.place(relx= 0.70, rely=0.8)
-login_button.place(relx=0.38, rely= 0.5)
+to_register.place(relx= 0.32, rely=0.85)
+login_button.place(relx=0.32, rely= 0.75)
 
 
 #----------------------------------------------------------------------------------------------------------------
 #Inputs position
 
-input_login.place(relx=0.38, rely=0.3)
-input_password.place(relx= 0.38, rely= 0.4)
+input_login.place(relx=0.32, rely=0.55)
+input_password.place(relx= 0.32, rely= 0.65)
 
 root.mainloop()
 
