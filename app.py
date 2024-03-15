@@ -98,8 +98,8 @@ def voltar_page():
     root.geometry('700x500')
     canvas = Canvas(root,  bd=0, highlightthickness=0)
     canvas.pack()
-    image_login = PhotoImage(file='./img/vidadeimigrante.png')
-    image_label = Label(root, image=image_login, width=800, height=500,bg="#DCDCDC")
+    image_login = PhotoImage(file='./img/6-3-800x445.png')
+    image_label = Label(root, image=image_login, width=700, height=500,bg="#DCDCDC")
     image_label.place(relx=0.0, rely=0.0)
     root.image_login = image_login
     #----------------------------------------------------------------------------------------------------------------
@@ -209,9 +209,9 @@ def tela_cadastro():
 #----------------------------------------------------------------------------------------------------------------
 canvas = Canvas(root,  bd=0, highlightthickness=0)
 canvas.pack()
-image_login = PhotoImage(file='./img/vidadeimigrante.png')
-image_label = Label(root, image=image_login, width=500, height=500,bg="#DCDCDC")
-image_label.place(relx=0.15, rely=0.0)
+image_login = PhotoImage(file='./img/6-3-800x445.png')
+image_label = Label(root, image=image_login, width=700, height=500,bg="#DCDCDC")
+image_label.place(relx=0.0, rely=0.0)
 root.image_login = image_login
 #----------------------------------------------------------------------------------------------------------------
 #INPUTS LOGIN | APENAS ELEMENTOS DA TELA DE LOGIN
