@@ -16,12 +16,20 @@ def tela_cadastro():
     root.destroy()
     
     screen_register = ctk.CTk()
-    screen_register.geometry('700x500')
+    screen_register.geometry('1200x630')
     screen_register.title('Action Prol - System | Register')
     screen_register.resizable(False, False)
     
     # ------------------------------------------------------------------------
-
+    
+    canvas = Canvas(screen_register,  bd=0, highlightthickness=0)
+    canvas.pack()
+    image_register = PhotoImage(file='./img/20230228_migracao_saopaulo.png')
+    image_label1 = Label(screen_register, image=image_register, width=1200, height=630,)
+    image_label1.place(relx=0.0, rely=0.0)
+    root.image_register = image_register
+    
+    #------------------------------------------------------------------------
     username_cadastro = ctk.CTkEntry(screen_register, placeholder_text='Usuário', placeholder_text_color='#C0C0C0',
                                      text_color='black', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
     username_cadastro.place(relx=0.35 , rely=0.3)
@@ -47,10 +55,19 @@ def tela_cadastro():
 
     # ------------------------------------------------------------------------
     
+    
+    
+    
+    
+    
+    
+    
+    
     #BOTÃO REGISTRO
     validar_cadastro = ctk.CTkButton(screen_register,  text_color='#fff', text='CADASTRAR-SE',
                                      fg_color='#778899', hover_color='#005180', bg_color='#fff', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     validar_cadastro.place(relx=0.35, rely=0.70)
+    
     
     
     
