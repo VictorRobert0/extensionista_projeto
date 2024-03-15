@@ -33,6 +33,34 @@ cursor.execute('''
                    email TEXT NOT NULL,
                    rg TEXT NOT NULL,
                    password TEXT NOT NULL )''')
+
+
+#----------------------------------------------------------------------------------------------------------------
+# VALIDANDO O LOGIN DO USUÁRIO | TELA DE LOGIN
+#----------------------------------------------------------------------------------------------------------------
+
+def validar_login():
+    username = input_login.get()
+    password = input_password.get()
+    if username != '' and password != '':
+        cursor.execute(
+            'SELECT password FROM users WHERE username=?', [username])
+        result = cursor.fetchone()
+        if result:
+            if bcrypt.checkpw(password.encode('utf-8'), result[0]):
+                messagebox.showinfo('SUCESSO', 'Login realizado com sucesso')
+                root.destroy()
+                
+            else: 
+                messagebox.showerror('ERRO', 'Senha inválida')
+        else: 
+            messagebox.showerror('ERRO', 'Usuário Inválido')
+    
+    else:
+        messagebox.showerror('ERRO', 'Preencha todos os campos')
+        
+
+
 #----------------------------------------------------------------------------------------------------------------
 # VALIDANDO O FORMULÁRIO DE CADASTRO | TELA DE CADASTRO
 #----------------------------------------------------------------------------------------------------------------
@@ -151,7 +179,7 @@ input_password.place(relx= 0.32, rely= 0.5)
 #----------------------------------------------------------------------------------------------------------------
 #BOTÕES
 #----------------------------------------------------------------------------------------------------------------
-login_button = ctk.CTkButton(master=root, text="Acessar", width=200)
+login_button = ctk.CTkButton(master=root, text="Acessar", width=200, command=validar_login)
 to_register = ctk.CTkButton(master=root, text="REGISTRAR-SE", width=200, command=tela_cadastro)
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
