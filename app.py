@@ -13,7 +13,7 @@ root.resizable(False,False)
 root.config(bg='#DCDCDC')
 
 #----------------------------------------------------------------------------------------------------------------
-
+#----------------------------------------------------------------------------------------------------------------
 
     
 
@@ -23,6 +23,7 @@ root.config(bg='#DCDCDC')
 
 #----------------------------------------------------------------------------------------------------------------
 # BANCO DE DADOS | TABELA DE USUÁRIOS
+#----------------------------------------------------------------------------------------------------------------
 conn = sqlite3.connect('./DB/bancodedados.db')
 cursor = conn.cursor()
 
@@ -33,7 +34,8 @@ cursor.execute('''
                    rg TEXT NOT NULL,
                    password TEXT NOT NULL )''')
 #----------------------------------------------------------------------------------------------------------------
-
+# VALIDANDO O FORMULÁRIO DE CADASTRO | TELA DE CADASTRO
+#----------------------------------------------------------------------------------------------------------------
 def validar_formulario():
     username = username_cadastro.get()
     email = email_cadastro.get()
@@ -55,12 +57,12 @@ def validar_formulario():
     else:
         messagebox.showerror('ERRO', 'Por favor, insira todos os dados.')
 #----------------------------------------------------------------------------------------------------------------       
+#----------------------------------------------------------------------------------------------------------------
 
 
-
-
-# TELA DE REGISTRO
-
+#----------------------------------------------------------------------------------------------------------------
+# TELA DE CADASTRO | TODOS OS ELEMENTOS DA TELA DE CADASTRO
+#----------------------------------------------------------------------------------------------------------------
 def tela_cadastro():
     global username_cadastro
     global email_cadastro
@@ -112,8 +114,9 @@ def tela_cadastro():
 
     
     
-    
-    #BOTÃO REGISTRO
+    #----------------------------------------------------------------------------------------------------------------
+    #BOTÃO REGISTRO | FUNÇÃO DE CADASTRO ESTÁ AQUI
+    #----------------------------------------------------------------------------------------------------------------
     validar_cadastro = ctk.CTkButton(screen_register,command=validar_formulario,text_color='#fff', text='CADASTRAR-SE',
                                      fg_color='#778899', hover_color='#005180', bg_color='#fff', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     validar_cadastro.place(relx=0.35, rely=0.70)
@@ -122,47 +125,42 @@ def tela_cadastro():
     
     
     screen_register.mainloop()
-
-
-
+#----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
 
-
-#LOGIN IMAGE (recursos do TkInter)
-
+#----------------------------------------------------------------------------------------------------------------
+#LOGIN IMAGE (recursos do TkInter) 
+#----------------------------------------------------------------------------------------------------------------
 canvas = Canvas(root,  bd=0, highlightthickness=0)
 canvas.pack()
 image_login = PhotoImage(file='./img/vidadeimigrante.png')
 image_label = Label(root, image=image_login, width=500, height=500,bg="#DCDCDC")
 image_label.place(relx=0.15, rely=0.0)
 root.image_login = image_login
-
 #----------------------------------------------------------------------------------------------------------------
-
-#INPUTS LOGIN
-
+#INPUTS LOGIN | APENAS ELEMENTOS DA TELA DE LOGIN
+#----------------------------------------------------------------------------------------------------------------
 input_login = ctk.CTkEntry(master=root,placeholder_text="Digite seu usuário", width=200)
 input_password = ctk.CTkEntry(master=root, placeholder_text="Digite sua senha", width=200)
 
 #----------------------------------------------------------------------------------------------------------------
-#BOTÕES
-
-login_button = ctk.CTkButton(master=root, text="Acessar", width=200)
-
-to_register = ctk.CTkButton(master=root, text="REGISTRAR-SE", width=200, command=tela_cadastro)
-
+#INPUTS LOGIN POSIÇÃO
 #----------------------------------------------------------------------------------------------------------------
-
-#Button position
-to_register.place(relx= 0.32, rely=0.75)
-login_button.place(relx=0.32, rely= 0.6)
-
-
-#----------------------------------------------------------------------------------------------------------------
-#Inputs position
-
 input_login.place(relx=0.32, rely=0.4)
 input_password.place(relx= 0.32, rely= 0.5)
+#----------------------------------------------------------------------------------------------------------------
+#BOTÕES
+#----------------------------------------------------------------------------------------------------------------
+login_button = ctk.CTkButton(master=root, text="Acessar", width=200)
+to_register = ctk.CTkButton(master=root, text="REGISTRAR-SE", width=200, command=tela_cadastro)
+#----------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------
+#BOTÕES POSIÇÃO | ELEMENTOS DA TELA DE LOGIN
+#----------------------------------------------------------------------------------------------------------------
+to_register.place(relx= 0.32, rely=0.75)
+login_button.place(relx=0.32, rely= 0.6)
+#----------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------
 
 root.mainloop()
 
