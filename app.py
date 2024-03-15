@@ -49,11 +49,11 @@ def validar_formulario():
             encoded_password = password.encode('utf-8')
             hashed_password = bcrypt.hashpw(encoded_password, bcrypt.gensalt())
             print(hashed_password)
-            cursor.execute('INSERT INTO users VALUES (?,?,?,?)',[username, email, rg, password])
+            cursor.execute('INSERT INTO users VALUES (?,?,?,?)',[username, email, rg, hashed_password])
             conn.commit()
             messagebox.showinfo('SUCESSO', 'Cadastro realizado com sucesso.')
     else:
-        messagebox.showerror('ERRO', 'Por favo, insira todos os dados.')
+        messagebox.showerror('ERRO', 'Por favor, insira todos os dados.')
 #----------------------------------------------------------------------------------------------------------------       
 
 
