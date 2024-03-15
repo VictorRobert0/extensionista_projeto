@@ -77,21 +77,22 @@ def tela_cadastro():
 
 #----------------------------------------------------------------------------------------------------------------
 
-#INPUTS LOGIN
-
-input_login = ctk.CTkEntry(master=root,placeholder_text="Digite seu usuário", width=200)
-input_password = ctk.CTkEntry(master=root, placeholder_text="Digite sua senha", width=200)
-#----------------------------------------------------------------------------------------------------------------
 
 #LOGIN IMAGE (recursos do TkInter)
 
 canvas = Canvas(root,  bd=0, highlightthickness=0)
 canvas.pack()
-image_login = PhotoImage(file='./img/user-login-icon-29.png')
-image_label = Label(root, image=image_login, width=377, height=270,bg="#DCDCDC")
-image_label.place(relx=0.23, rely=0.0)
+image_login = PhotoImage(file='./img/vidadeimigrante.png')
+image_label = Label(root, image=image_login, width=500, height=500,bg="#DCDCDC")
+image_label.place(relx=0.15, rely=0.0)
 root.image_login = image_login
 
+#----------------------------------------------------------------------------------------------------------------
+
+#INPUTS LOGIN
+
+input_login = ctk.CTkEntry(master=root,placeholder_text="Digite seu usuário", width=200)
+input_password = ctk.CTkEntry(master=root, placeholder_text="Digite sua senha", width=200)
 
 #----------------------------------------------------------------------------------------------------------------
 #BOTÕES
@@ -103,15 +104,15 @@ to_register = ctk.CTkButton(master=root, text="REGISTRAR-SE", width=200, command
 #----------------------------------------------------------------------------------------------------------------
 
 #Button position
-to_register.place(relx= 0.32, rely=0.85)
-login_button.place(relx=0.32, rely= 0.75)
+to_register.place(relx= 0.32, rely=0.75)
+login_button.place(relx=0.32, rely= 0.6)
 
 
 #----------------------------------------------------------------------------------------------------------------
 #Inputs position
 
-input_login.place(relx=0.32, rely=0.55)
-input_password.place(relx= 0.32, rely= 0.65)
+input_login.place(relx=0.32, rely=0.4)
+input_password.place(relx= 0.32, rely= 0.5)
 
 root.mainloop()
 
