@@ -1,5 +1,8 @@
 import customtkinter as ctk
 from tkinter import *
+import sqlite3
+from tkinter import messagebox
+import bcrypt
 
 #Inicio do projeto Extensionista de reconhecimento facial 14/3/2024
 
@@ -10,9 +13,60 @@ root.resizable(False,False)
 root.config(bg='#DCDCDC')
 
 #----------------------------------------------------------------------------------------------------------------
+
+
+    
+
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------
+# BANCO DE DADOS | TABELA DE USUÁRIOS
+conn = sqlite3.connect('./DB/bancodedados.db')
+cursor = conn.cursor()
+
+cursor.execute(''' 
+               CREATE TABLE IF NOT EXISTS users (
+                   username TEXT NOT NULL,
+                   email TEXT NOT NULL,
+                   rg TEXT NOT NULL,
+                   password TEXT NOT NULL )''')
+#----------------------------------------------------------------------------------------------------------------
+
+def validar_formulario():
+    username = username_cadastro.get()
+    email = email_cadastro.get()
+    rg = rg_cadastro.get()
+    password = password_cadastro.get()
+
+    if username != '' and email != '' and password != '' and rg != '':
+        cursor.execute(
+            'SELECT username FROM users WHERE username=?', [username])
+        if cursor.fetchone() is not None:
+            messagebox.showerror('ERRO', 'Usuário já existe.')
+        else:
+            encoded_password = password.encode('utf-8')
+            hashed_password = bcrypt.hashpw(encoded_password, bcrypt.gensalt())
+            print(hashed_password)
+            cursor.execute('INSERT INTO users VALUES (?,?,?,?)',[username, email, rg, password])
+            conn.commit()
+            messagebox.showinfo('SUCESSO', 'Cadastro realizado com sucesso.')
+    else:
+        messagebox.showerror('ERRO', 'Por favo, insira todos os dados.')
+#----------------------------------------------------------------------------------------------------------------       
+
+
+
+
 # TELA DE REGISTRO
 
 def tela_cadastro():
+    global username_cadastro
+    global email_cadastro
+    global rg_cadastro
+    global password_cadastro
+    
     root.destroy()
     
     screen_register = ctk.CTk()
@@ -30,6 +84,7 @@ def tela_cadastro():
     root.image_register = image_register
     
     #------------------------------------------------------------------------
+    
     username_cadastro = ctk.CTkEntry(screen_register, placeholder_text='Usuário', placeholder_text_color='#C0C0C0',
                                      text_color='black', fg_color='#F0F8FF', border_color='#000', border_width=2, bg_color='#fff', width=200)
     username_cadastro.place(relx=0.35 , rely=0.3)
@@ -54,17 +109,12 @@ def tela_cadastro():
     password_cadastro.place(relx=0.35, rely=0.60)
 
     # ------------------------------------------------------------------------
-    
-    
-    
-    
-    
-    
+
     
     
     
     #BOTÃO REGISTRO
-    validar_cadastro = ctk.CTkButton(screen_register,  text_color='#fff', text='CADASTRAR-SE',
+    validar_cadastro = ctk.CTkButton(screen_register,command=validar_formulario,text_color='#fff', text='CADASTRAR-SE',
                                      fg_color='#778899', hover_color='#005180', bg_color='#fff', cursor='hand2', corner_radius=5, width=120, anchor=CENTER)
     validar_cadastro.place(relx=0.35, rely=0.70)
     
